@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <head>
+        <title>Tweet Sayfası</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <h:body>
+        <h:form>  
+            <p:dataTable id="screen" var="c" value="#{tweet.}" >
+            <p:poll interval="3" update="screen"/>
+    <p:column headerText="Mesaj Metni" >
+        <h:outputText value="#{c.body}"  />
+    </p:column>
+ 
+    <p:column headerText="Kullanıcı ID" >
+        <h:outputText value="#{c.u_id}" />
+    </p:column>
+ 
+    <p:column headerText="Kullanıcı Adı" >
+        <h:outputText value="#{c.username}" />
+    </p:column>
+    </p:dataTable>
+    <h:panelGrid columns="3" cellpadding="4" >
+        
+    <p> </p>   
+    <p:inputTextarea rows="5" cols="30" counter="body" maxlength="10" counterTemplate="{0} karakter kaldı." autoResize="false" value="#{tweet.body}"/>
+    <h:outputText id="body" />
+    
+    <p> </p>
+    <p:commandButton value="submit" type="submit" action="#{tweet.add()}" update="screen"/>
+    
+    </h:panelGrid>
+    <h:form>       
+            <p>Welcome, #{loginBean.uname}</p>
+     
+            <p:commandButton action="#{loginBean.logout()}" value="Logout"  ajax="false"></p:commandButton>
+            
+    </h:form>
+    </h:form>
+        
+    </h:body>
+</html>
